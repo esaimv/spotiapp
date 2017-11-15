@@ -1,0 +1,50 @@
+<div *ngIf="artista" class="container animated fadeIn ">
+  <div  class="row " style="padding-top: 40px; padding-bottom: 40px; background-color:black; color: white;">
+    <div class="col-md-4 text-center">
+      <img width="40%"[src]="artista.images | sinfoto" class="img-circle">
+    </div>
+    <div class="col-md-8">
+      <h2>{{artista.name}}</h2>
+      <hr>
+      <button type="button" class="btn btn-primary puntero" [routerLink]="['/buscar']">Regresar</button>
+      <button type="button" class="btn btn-success puntero" (click)="abrirSpotify()">Abrir en spotfy</button>
+    </div>
+    <div class="container" style="padding-top: 30px;">
+      <h2>Top Tracks</h2>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-inverse table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Foto</th>
+                  <th>Cancion</th>
+                  <th>Popularidad</th>
+                  <th>Preview</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pista of pistas | slice:0:5; let i = index;" class="puntero">
+                  <td>{{ i+1 }}</td>
+                  <td><img width="80px"[src]="pista.album?.images | sinfoto" class="img-fluid"></td>
+                  <td>{{ pista.name }}</td>
+                  <td>{{ pista.popularity }}%</td>
+                  <td>
+                    <iframe [src]="pista.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                    <!-- <audio controls="">
+                      <source [src]="pista.preview_url">
+                        Tu navegador es muy viejo.
+                    </audio> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

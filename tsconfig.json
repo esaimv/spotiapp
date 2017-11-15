@@ -15,5 +15,10 @@
       "es2016",
       "dom"
     ]
-  }
+  },
+  "esclude":[
+    "../node_modules"
+  ],
+  "compileOnSave":false
+
 }
